@@ -12,32 +12,6 @@ The computation load is distributed across a decoupled architecture over a priva
 
 1. **Edge AI Vision Hub (Python / OpenCV):** Runs frame-by-frame facial and ocular classification models on an isolated core while hosting a localized HTTP REST API Gateway to expose the safety state.
 2. **Industrial Control Unit (ESP32 / FreeRTOS):** A multi-threaded embedded node that concurrently queries the web gateway via a Wi-Fi bridge, updates warning indicators (LEDs/Buzzers), and monitors hardware safety interrupts.
-              ┌──────────────────────────────┐
-              │   Webcam Real-Time Stream    │
-              └──────────────┬───────────────┘
-                             │
-                             ▼
-              ┌──────────────────────────────┐
-              │  Edge AI Vision Hub (Python) │
-              │   • Haar Cascade Eyetracking │
-              │   • Custom Vocal Alarms      │
-              └──────────────┬───────────────┘
-                             │ (Hosts Local HTTP Gateway: Port 8000)
-                             ▼
-                     ⚡ Private Router ⚡
-                             │
-                             ▼ (Non-Blocking HTTP Polls)
-              ┌──────────────────────────────┐
-              │ Industrial ESP32 Controller  │
-              │   • FreeRTOS Core Scheduler  │
-              │   • Multi-Threaded Tasks     │
-              └──────┬────────────────┬──────┘
-                     │                │
-                     ▼                ▼
-        ┌───────────────────┐  ┌───────────────────┐
-        │ Physical Actuators│  │ Hardware Override │
-        │ LEDs / Audio Alarm│  │  Thermal Switch   │
-        └───────────────────┘  └───────────────────┘
    
 
    
