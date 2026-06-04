@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "author": "Navya",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp32",
+      "top": 105.6,
+      "left": -119.96,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_green",
+      "top": -61.2,
+      "left": -149.8,
+      "attrs": { "color": "green" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_yellow",
+      "top": -60,
+      "left": -40,
+      "attrs": { "color": "yellow" }
+    },
+    { "type": "wokwi-led", "id": "led_red", "top": -60, "left": 40, "attrs": { "color": "red" } },
+    { "type": "wokwi-buzzer", "id": "buzzer", "top": -64.8, "left": 136.2, "attrs": {} },
+    { "type": "wokwi-resistor", "id": "r1", "top": 20, "left": -120, "attrs": { "value": "220" } },
+    { "type": "wokwi-resistor", "id": "r2", "top": 20, "left": -40, "attrs": { "value": "220" } },
+    {
+      "type": "wokwi-resistor",
+      "id": "r3",
+      "top": 13.55,
+      "left": 57.6,
+      "attrs": { "value": "220" }
+    },
+    { "type": "wokwi-dht22", "id": "dht1", "top": 38.7, "left": 81, "attrs": {} },
+    { "type": "wokwi-slide-switch", "id": "sw1", "top": 62, "left": 12.7, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp32:GND.1", "dht1:GND", "black", [ "h249.75" ] ],
+    [ "esp32:GND.2", "sw1:C", "black", [ "v0" ] ],
+    [ "esp32:GPIO12", "led_green:A", "green", [ "v0" ] ],
+    [ "esp32:GPIO14", "led_yellow:A", "yellow", [ "v0" ] ],
+    [ "esp32:GPIO27", "led_red:A", "red", [ "v0" ] ],
+    [ "esp32:GPIO26", "buzzer:2", "purple", [ "v0" ] ],
+    [ "esp32:3V3", "dht1:VCC", "red", [ "v19.2", "h134.55" ] ],
+    [ "esp32:GPIO4", "dht1:SDA", "blue", [ "v0" ] ],
+    [ "esp32:GPIO5", "sw1:1", "orange", [ "v0" ] ],
+    [ "sw1:2", "esp32:GND.2", "green", [ "v0" ] ],
+    [ "led_green:A", "esp32:12", "green", [ "h-68.2", "v267.6" ] ],
+    [ "led_green:C", "r1:1", "green", [ "v0" ] ],
+    [ "r1:2", "esp32:GND.1", "black", [ "v22.35", "h-111.6", "v240", "h57.45" ] ],
+    [ "esp32:14", "led_yellow:A", "gold", [ "h-105.45", "v-307.2", "h230.4", "v49.2" ] ],
+    [ "led_yellow:C", "r2:1", "gold", [ "h-23", "v43.65" ] ],
+    [ "r2:2", "esp32:GND.1", "black", [ "v31.95", "h-172.4", "v201.6" ] ],
+    [ "esp32:27", "led_red:A", "blue", [ "h0" ] ],
+    [ "led_red:C", "r3:1", "blue", [ "v0" ] ],
+    [ "r3:2", "esp32:GND.1", "black", [ "h27.6", "v307.2", "h-297.6", "v-57.6", "h38.25" ] ],
+    [ "buzzer:2", "esp32:26", "purple", [ "v0" ] ],
+    [ "buzzer:1", "esp32:GND.1", "black", [ "v249.6", "h-278.55" ] ],
+    [ "esp32:4", "dht1:SDA", "blue", [ "h0" ] ],
+    [ "sw1:1", "esp32:5", "cyan", [ "v115.2", "h-38.4" ] ]
+  ],
+  "dependencies": {}
+}
